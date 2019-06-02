@@ -1,4 +1,10 @@
-<app-page-header></app-page-header>
+<app-page-header *ngIf="subject"
+[header]="subject.header" 
+[subHeader]="subject.subHeader" 
+[image]="changedHeaderImage"
+>
+
+</app-page-header>
 
 <div class="container">
   <div class="searchHolder">

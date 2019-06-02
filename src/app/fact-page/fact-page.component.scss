@@ -1,14 +1,3 @@
-@import "../scss/_variables.scss";
-@import "../scss/_mixins.scss";
-@import "../scss/_global.scss";
-@import "../scss/_navbar.scss";
-@import "../scss/_masthead.scss";
-@import "../scss/_post.scss";
-@import "../scss/_contact.scss";
-@import "../scss/_footer.scss";
-@import "../scss/_bootstrap-overrides.scss";
-@import "../scss/bootstrap.scss";
-@import "../scss/_clean.scss";
 
 .factImageHolder {
   display: flex;
@@ -26,12 +15,12 @@
 }
 
 .sectionHolder {
-  margin-bottom: 20px;
+  margin: 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   div{
-    
+    margin:5px;
     border: 1px solid gainsboro;
     border-radius: 15px;
     // margin:5px;

@@ -5,6 +5,8 @@ import { Section } from '../models/sections';
 import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Page } from '../models/page';
+import { Subject } from '../models/subject';
 
 @Component({
   selector: 'app-fact-page',
@@ -16,9 +18,12 @@ export class FactPageComponent implements OnInit {
   base = environment.apiBase;
   factImages: FactImage[];
   sections: Section[];
+  subject: Subject;
   selectedSections: number[] = [];
   searchString = '';
   wordTyping: FormControl;
+  changedHeaderImage = '';
+  totalRecords = 0;
 
   constructor(private http: HttpClient) { }
 
@@ -62,8 +67,11 @@ export class FactPageComponent implements OnInit {
       path += '&searchString=' + this.searchString;
     }
 
-    this.http.get<FactImage[]>(this.base + path).subscribe(x => {
-      this.factImages = x;
+    this.http.get<Page>(this.base + path).subscribe(x => {
+      this.factImages = x.records;
+      this.totalRecords = x.totalRecords;
+      this.GetSubjectFromPath();
+
     });
   }
 
@@ -71,6 +79,17 @@ export class FactPageComponent implements OnInit {
     const path = '/sections/GetAllForSubject/2';
     this.http.get<Section[]>(this.base + path).subscribe(x => {
       this.sections = x;
+    });
+  }
+
+  GetSubjectFromPath() {
+    let slug = window.location.pathname;
+    slug = slug.substring(1);
+    const path = `/subjects/GetFromPath?slug=${slug}`;
+    this.http.get<Subject>(this.base + path).subscribe(x => {
+      this.subject = x;
+      this.changedHeaderImage = this.base + '/header-images/' + x.headerImage;
+      this.subject.header = this.subject.header.replace("{num}", this.totalRecords.toString());
     });
   }
 }

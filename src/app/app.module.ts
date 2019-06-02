@@ -3,23 +3,27 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NewFrontComponent } from './new-front/new-front.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { BlogFooterComponent } from './blog-footer/blog-footer';
+import { NavbarComponent } from './partial-views/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { FactPageComponent } from './fact-page/fact-page.component';
-import { PageHeaderComponent } from './page-header/page-header.component';
+import { PageHeaderComponent } from './partial-views/page-header/page-header.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { HomeComponent } from './home/home.component';
+import { FooterComponent } from './partial-views/footer/footer';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NewFrontComponent,
+    HomeComponent,
     NavbarComponent,
-    BlogFooterComponent,
+    FooterComponent,
     FactPageComponent,
-    PageHeaderComponent
+    PageHeaderComponent,
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     FormsModule,
@@ -29,8 +33,10 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     AngularFontAwesomeModule,
     AppRoutingModule,
     RouterModule.forRoot([
-      { path: '', component: NewFrontComponent },
-      { path: 'fact', component: FactPageComponent },
+      { path: '', component: HomeComponent },
+      { path: 'cat-facts', component: FactPageComponent },
+      { path: 'about', component: AboutComponent },
+      { path: 'contact', component: ContactComponent },
     ])
   ],
   providers: [],
