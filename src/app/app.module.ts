@@ -1,13 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NewFrontComponent } from './blog/other/new-front/new-front.component';
-import { NavbarComponent } from './blog/other/navbar/navbar.component';
-import { BlogFooterComponent } from './blog/other/blog-footer/blog-footer';
+import { NewFrontComponent } from './new-front/new-front.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { BlogFooterComponent } from './blog-footer/blog-footer';
 import { RouterModule } from '@angular/router';
 import { FactPageComponent } from './fact-page/fact-page.component';
+import { PageHeaderComponent } from './page-header/page-header.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -15,10 +18,15 @@ import { FactPageComponent } from './fact-page/fact-page.component';
     NewFrontComponent,
     NavbarComponent,
     BlogFooterComponent,
-    FactPageComponent
+    FactPageComponent,
+    PageHeaderComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     BrowserModule,
+    AngularFontAwesomeModule,
     AppRoutingModule,
     RouterModule.forRoot([
       { path: '', component: NewFrontComponent },

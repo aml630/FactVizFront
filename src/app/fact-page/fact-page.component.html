@@ -1,67 +1,17 @@
-<header class="masthead"
-  style="background-image: url('https://d17fnq9dkz9hgj.cloudfront.net/uploads/2012/11/152964589-welcome-home-new-cat-632x475.jpg')">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-        <div class="site-heading">
-          <h1>Clean Blog</h1>
-          <span class="subheading">A Blog Theme by Start Bootstrap</span>
-        </div>
-      </div>
+<app-page-header></app-page-header>
+
+<div class="container">
+  <div class="searchHolder">
+      <i class="fa fa-search"></i><input class="searchString" [formControl]="wordTyping">
+  </div>
+  <div class="sectionHolder">
+    <div *ngFor='let section of sections; let i = index' [ngClass]="{'selected': selectedSections.includes(i+1)}"
+      (click)="ToggleActive(section.sectionId)">{{section.sectionName}}</div>
+  </div>
+
+  <div class="factImageHolder">
+    <div *ngFor='let img of factImages' class="factImg">
+      <img src='{{GetImagePath(img.imageUrl)}}'>
     </div>
   </div>
-</header>
-
-
-<div class="grid-container">
-
-  <section class="section section__left-col">
-    <div class="block flex-column">
-      <figure>
-        <img src="https://raw.githubusercontent.com/ccania/playground/master/grid/img/cactus-homepage-slider-4.jpg"
-          alt="placeholder image" class="img" />
-        <figcaption>
-          <h3>Left Column</h3>
-          <p>More Text Here</p>
-        </figcaption>
-      </figure>
-    </div>
-  </section>
-  <section class="section section__right-col">
-    <div class="block flex-column">
-      <figure>
-        <img src="https://raw.githubusercontent.com/ccania/playground/master/grid/img/cactus-homepage-slider-2.jpg"
-          alt="placeholder image" class="img" />
-        <figcaption>
-          <h3>Right Column</h3>
-          <p>More Text Here</p>
-        </figcaption>
-      </figure>
-    </div>
-  </section>
-  <section class="section section__left-col--lwr">
-    <div class="block flex-column">
-      <figure>
-        <img src="https://raw.githubusercontent.com/ccania/playground/master/grid/img/cactus-homepage-slider-3.jpg"
-          alt="placeholder image" class="img" />
-        <figcaption>
-          <h3>Left Column 2</h3>
-          <p>More Text Here</p>
-        </figcaption>
-      </figure>
-    </div>
-  </section>
-  <section class="section section__right-col--lwr">
-    <div class="block flex-column">
-      <figure>
-        <img src="https://raw.githubusercontent.com/ccania/playground/master/grid/img/cactus-homepage-slider-4.jpg"
-          alt="placeholder image" class="img" />
-        <figcaption>
-          <h3>Right Column 2</h3>
-          <p>More Text Here</p>
-        </figcaption>
-      </figure>
-    </div>
-  </section>
 </div>
