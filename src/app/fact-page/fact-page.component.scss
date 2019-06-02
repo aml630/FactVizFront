@@ -19,8 +19,9 @@
   width: 100%;
   text-align: center;
   margin-bottom: 20px;
-  .searchString{
-
+  color: gainsboro;
+  i {
+    margin-right: 10px;
   }
 }
 
@@ -57,7 +58,8 @@
 }
 
 .selected {
-  background-color: paleturquoise;
+  color: white !important;
+  background-color: #779ecb;
 }
 
 .searchString {
