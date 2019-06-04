@@ -1,23 +1,30 @@
-<app-page-header *ngIf="subject"
-[header]="subject.header" 
-[subHeader]="subject.subHeader" 
-[image]="changedHeaderImage"
->
+<app-page-header *ngIf="subject" [header]="subject.header" [subHeader]="subject.subHeader" [image]="changedHeaderImage">
 
 </app-page-header>
 
 <div class="container">
   <div class="searchHolder">
-      <i class="fa fa-search"></i><input class="searchString" [formControl]="wordTyping">
+    <i class="fa fa-search"></i><input class="searchString" [formControl]="wordTyping">
   </div>
   <div class="sectionHolder">
-    <div *ngFor='let section of sections; let i = index' [ngClass]="{'selected': selectedSections.includes(i+1)}"
-      (click)="ToggleActive(section.sectionId)">{{section.sectionName}}</div>
+    <div *ngFor='let section of sections; let i = index'
+      [ngClass]="{'selected': selectedSections.includes(section.sectionId)}" (click)="ToggleActive(section.sectionId)">
+      {{section.sectionName}}</div>
   </div>
 
   <div class="factImageHolder">
     <div *ngFor='let img of factImages' class="factImg">
-      <img src='{{GetImagePath(img.imageUrl)}}'>
+      <img src='{{GetImagePath(img.imageUrl)}}' (click)="ShowShareBox(img.factImageId)">
+      <div *ngIf="img.factImageId === selectedBox" class="shareBar" [ngClass]="{'longBox': img.factImageId === selectedSource}">
+        <noscript>{{img.factText}}</noscript>
+        <div class="shareBox">
+          <i class="fa fa-twitter"></i>
+          <i class="fa fa-facebook"></i>
+          <i class="fa fa-pinterest"></i>
+          <div *ngIf='img.source' class="source" (click)="ShowSourceBox(img.factImageId)">Source</div>
+        </div>
+        <p *ngIf="img.factImageId === selectedSource">{{img.source}} Hello</p>
+      </div>
     </div>
   </div>
 </div>

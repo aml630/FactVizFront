@@ -2,6 +2,7 @@
 .factImageHolder {
   display: flex;
   flex-wrap: wrap;
+  cursor: pointer;
 }
 
 .searchHolder {
@@ -41,8 +42,39 @@
   img {
     border-radius: 15px;
     margin: 15px;
-    height: 300px;
-    width: 500px;
+    height: 200px;
+    width: 400px;
+  }
+  .shareBar{
+    width: 395px;
+    height: 50px;
+    background-color: white;
+    margin-top: -30px;
+    margin-left: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border: 1px solid gainsboro;
+    .shareBox {
+      padding-top: 20px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      i{
+        font-size: 20px;
+      }
+    }
+  }
+  .longBox{
+    height: 80px;
+  }
+  .fa-pinterest{
+    color: #cb2027;
+  }
+  .fa-twitter{
+    color: #38A1F3
+  }
+  .fa-facebook{
+    color:#3b5998;
   }
 }
 

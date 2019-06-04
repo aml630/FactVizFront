@@ -24,6 +24,8 @@ export class FactPageComponent implements OnInit {
   wordTyping: FormControl;
   changedHeaderImage = '';
   totalRecords = 0;
+  selectedBox = 0;
+  selectedSource = 0;
 
   constructor(private http: HttpClient) { }
 
@@ -75,10 +77,27 @@ export class FactPageComponent implements OnInit {
     });
   }
 
+  ShowShareBox(shareImageId: number) {
+    if (this.selectedBox === shareImageId) {
+      this.selectedBox = 0;
+    } else {
+      this.selectedBox = shareImageId;
+    }
+  }
+
+  ShowSourceBox(shareImageId: number) {
+    if (this.selectedSource === shareImageId) {
+      this.selectedSource = 0;
+    } else {
+      this.selectedSource = shareImageId;
+    }
+  }
+
   GetSubjectSections() {
     const path = '/sections/GetAllForSubject/2';
     this.http.get<Section[]>(this.base + path).subscribe(x => {
       this.sections = x;
+      console.log(this.sections)
     });
   }
 
@@ -89,7 +108,7 @@ export class FactPageComponent implements OnInit {
     this.http.get<Subject>(this.base + path).subscribe(x => {
       this.subject = x;
       this.changedHeaderImage = this.base + '/header-images/' + x.headerImage;
-      this.subject.header = this.subject.header.replace("{num}", this.totalRecords.toString());
+      this.subject.header = this.subject.header.replace('{num}', this.totalRecords.toString());
     });
   }
 }

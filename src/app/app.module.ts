@@ -7,13 +7,13 @@ import { NavbarComponent } from './partial-views/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { FactPageComponent } from './fact-page/fact-page.component';
 import { PageHeaderComponent } from './partial-views/page-header/page-header.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './partial-views/footer/footer';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +27,7 @@ import { ContactComponent } from './contact/contact.component';
   ],
   imports: [
     FormsModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserModule,
