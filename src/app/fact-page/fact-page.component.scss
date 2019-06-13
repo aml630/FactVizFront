@@ -1,8 +1,6 @@
-
 .factImageHolder {
   display: flex;
   flex-wrap: wrap;
-  cursor: pointer;
 }
 
 .searchHolder {
@@ -24,7 +22,6 @@
     margin:5px;
     border: 1px solid gainsboro;
     border-radius: 15px;
-    // margin:5px;
     font-size: 14px;
     font-weight: 600;
     padding: 10px 15px;
@@ -44,6 +41,7 @@
     margin: 15px;
     height: 200px;
     width: 400px;
+    cursor: pointer;
   }
   .shareBar{
     width: 395px;
@@ -61,11 +59,18 @@
       justify-content: space-around;
       i{
         font-size: 20px;
+        cursor: pointer;
+      }
+      div{
+        cursor: pointer;
       }
     }
   }
   .longBox{
     height: 80px;
+  }
+  .sourceHolder{
+    text-align: center;
   }
   .fa-pinterest{
     color: #cb2027;

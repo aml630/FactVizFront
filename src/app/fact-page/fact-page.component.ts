@@ -23,6 +23,7 @@ export class FactPageComponent implements OnInit {
   searchString = '';
   wordTyping: FormControl;
   changedHeaderImage = '';
+  originalHeader = '';
   totalRecords = 0;
   selectedBox = 0;
   selectedSource = 0;
@@ -36,15 +37,13 @@ export class FactPageComponent implements OnInit {
       this.GetFactImages();
     });
 
-    this.GetFactImages();
-
-    this.GetSubjectSections();
+    this.GetSubjectFromPath();
   }
 
   ToggleActive(sectionId: number) {
     if (this.selectedSections.includes(sectionId)) {
       const index = this.selectedSections.indexOf(sectionId);
-      this.selectedSections.splice(index);
+      this.selectedSections.splice(index, 1);
     } else {
       this.selectedSections.push(sectionId);
     }
@@ -57,7 +56,7 @@ export class FactPageComponent implements OnInit {
   }
 
   GetFactImages() {
-    let path = '/factimages/GetAllForSubject/2?';
+    let path = `/factimages/GetAllForSubject/${this.subject.subjectId}?`;
 
     if (this.selectedSections.length > 0) {
       for (const sectionId of this.selectedSections) {
@@ -72,8 +71,7 @@ export class FactPageComponent implements OnInit {
     this.http.get<Page>(this.base + path).subscribe(x => {
       this.factImages = x.records;
       this.totalRecords = x.totalRecords;
-      this.GetSubjectFromPath();
-
+      this.subject.header = this.originalHeader.replace('{num}', this.totalRecords.toString());
     });
   }
 
@@ -94,10 +92,9 @@ export class FactPageComponent implements OnInit {
   }
 
   GetSubjectSections() {
-    const path = '/sections/GetAllForSubject/2';
+    const path = `/sections/GetAllForSubject/${this.subject.subjectId}`;
     this.http.get<Section[]>(this.base + path).subscribe(x => {
       this.sections = x;
-      console.log(this.sections)
     });
   }
 
@@ -108,7 +105,9 @@ export class FactPageComponent implements OnInit {
     this.http.get<Subject>(this.base + path).subscribe(x => {
       this.subject = x;
       this.changedHeaderImage = this.base + '/header-images/' + x.headerImage;
-      this.subject.header = this.subject.header.replace('{num}', this.totalRecords.toString());
+      this.originalHeader = x.header;
+      this.GetSubjectSections();
+      this.GetFactImages();
     });
   }
 }
