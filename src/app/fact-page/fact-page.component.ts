@@ -15,6 +15,8 @@ import { Subject } from '../models/subject';
 })
 export class FactPageComponent implements OnInit {
 
+  tweetUrl: string;
+  fbUrl: string;
   base = environment.apiBase;
   factImages: FactImage[];
   sections: Section[];
@@ -38,6 +40,24 @@ export class FactPageComponent implements OnInit {
     });
 
     this.GetSubjectFromPath();
+
+    this.tweetUrl = 'https://twitter.com/intent/tweet/?url=' + document.URL;
+
+    this.fbUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + document.URL;
+
+    (function () {
+      const shareButtons = document.querySelectorAll('.share-btn');
+      if (shareButtons) {
+        [].forEach.call(shareButtons, function (button) {
+          button.addEventListener('click', function (event) {
+            const width = 650, height = 450;
+            event.preventDefault();
+            window.open(this.href, 'Share Dialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,width=' +
+            width + ',height=' + height + ',top=' + (screen.height / 2 - height / 2) + ',left=' + (screen.width / 2 - width / 2));
+          });
+        });
+      }
+    })();
   }
 
   ToggleActive(sectionId: number) {

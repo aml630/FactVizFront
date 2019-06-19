@@ -19,9 +19,13 @@
       <div *ngIf="img.factImageId === selectedBox" class="shareBar"
         [ngClass]="{'longBox': img.factImageId === selectedSource}">
         <div class="shareBox">
-          <i class="fa fa-twitter"></i>
-          <i class="fa fa-facebook"></i>
-          <i class="fa fa-pinterest"></i>
+          <a class="share-btn"
+          href="{{tweetUrl}}"
+          title="Share on Twitter"><i class="fa fa-twitter"></i></a>
+          <a class="share-btn"
+          href="{{fbUrl}}"
+          title="Share on Facebook"><i class="fa fa-facebook"></i></a>
+          <i class="fa fa-pinterest share-btn"></i>
           <div *ngIf='img.source' class="source" (click)="ShowSourceBox(img.factImageId)">Source</div>
         </div>
         <div class="sourceHolder">
