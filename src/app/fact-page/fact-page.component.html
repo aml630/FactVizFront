@@ -21,11 +21,12 @@
         <div class="shareBox">
           <a class="share-btn"
           href="{{tweetUrl}}"
-          title="Share on Twitter"><i class="fa fa-twitter"></i></a>
+          title="Share on Twitter" (click)="ControlWindow(tweetUrl)"><i class="fa fa-twitter"></i></a>
           <a class="share-btn"
           href="{{fbUrl}}"
-          title="Share on Facebook"><i class="fa fa-facebook"></i></a>
-          <i class="fa fa-pinterest share-btn"></i>
+          title="Share on Facebook" (click)="ControlWindow(fbUrl)"><i class="fa fa-facebook"></i></a>
+          <a data-pin-do="buttonPin" data-pin-round="true" 
+          (click)="PinterestShare(GetImagePath(img.imageUrl), 'img.factText')"><i class="fa fa-pinterest share-btn"></i></a>
           <div *ngIf='img.source' class="source" (click)="ShowSourceBox(img.factImageId)">Source</div>
         </div>
         <div class="sourceHolder">
@@ -35,3 +36,9 @@
     </div>
   </div>
 </div>
+
+<script
+    type="text/javascript"
+    async defer
+    src="//assets.pinterest.com/js/pinit.js"
+></script>

@@ -17,6 +17,7 @@ export class FactPageComponent implements OnInit {
 
   tweetUrl: string;
   fbUrl: string;
+  pinUrl: string;
   base = environment.apiBase;
   factImages: FactImage[];
   sections: Section[];
@@ -45,19 +46,7 @@ export class FactPageComponent implements OnInit {
 
     this.fbUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + document.URL;
 
-    (function () {
-      const shareButtons = document.querySelectorAll('.share-btn');
-      if (shareButtons) {
-        [].forEach.call(shareButtons, function (button) {
-          button.addEventListener('click', function (event) {
-            const width = 650, height = 450;
-            event.preventDefault();
-            window.open(this.href, 'Share Dialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,width=' +
-            width + ',height=' + height + ',top=' + (screen.height / 2 - height / 2) + ',left=' + (screen.width / 2 - width / 2));
-          });
-        });
-      }
-    })();
+    this.pinUrl = "https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.flickr.com%2Fphotos%2Fkentbrew%2F6851755809%2F&media=https%3A%2F%2Ffarm8.staticflickr.com%2F7027%2F6851755809_df5b2051c9_z.jpg&description=Next%20stop%3A%20Pinterest"
   }
 
   ToggleActive(sectionId: number) {
@@ -101,6 +90,20 @@ export class FactPageComponent implements OnInit {
     } else {
       this.selectedBox = shareImageId;
     }
+  }
+
+  ControlWindow(href: string) {
+    const width = 650, height = 450;
+    event.preventDefault();
+    window.open(href, 'Share Dialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,width=' +
+      width + ',height=' + height + ',top=' + (screen.height / 2 - height / 2) + ',left=' + (screen.width / 2 - width / 2));
+  }
+
+  PinterestShare(imageUrl: string, factText: string) {
+    debugger;
+    const pinUrl = document.URL + '&media=' + imageUrl + '&description=' + factText;
+    const encodedUrl = 'https://www.pinterest.com/pin/create/button/?url=' + encodeURIComponent(pinUrl);
+    this.ControlWindow(encodedUrl);
   }
 
   ShowSourceBox(shareImageId: number) {
