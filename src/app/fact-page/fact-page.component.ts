@@ -100,9 +100,10 @@ export class FactPageComponent implements OnInit {
   }
 
   PinterestShare(imageUrl: string, factText: string) {
-    debugger;
-    const pinUrl = document.URL + '&media=' + imageUrl + '&description=' + factText;
-    const encodedUrl = 'https://www.pinterest.com/pin/create/button/?url=' + encodeURIComponent(pinUrl);
+
+    const encodedUrl = 'https://www.pinterest.com/pin/create/button/?url='
+      + encodeURIComponent(document.URL) + '&media=' + encodeURIComponent(imageUrl) + '&description=' + encodeURIComponent(factText);
+
     this.ControlWindow(encodedUrl);
   }
 
